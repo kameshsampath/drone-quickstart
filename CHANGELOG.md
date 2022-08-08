@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.8](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.7...v0.0.8) (2022-08-08)
+
+
+### Bug Fixes
+
+* using docker over kaniko ([c1ed336](https://github.com/kameshsampath/drone-quickstart/commit/c1ed336e94a728db4202151e66688e3675c57fa7))
+
 ## [0.0.7](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.6...v0.0.7) (2022-08-08)
 
 
