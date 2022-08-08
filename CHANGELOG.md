@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.5...v0.0.6) (2022-08-08)
+
+
+### Bug Fixes
+
+* try alt env sub ([321ab08](https://github.com/kameshsampath/drone-quickstart/commit/321ab08dda45189e2ef8e7e4151a433c9e39ce43))
+
 ## [0.0.5](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.4...v0.0.5) (2022-08-08)
 
 
