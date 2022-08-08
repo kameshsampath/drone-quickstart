@@ -3,7 +3,6 @@ kind: pipeline
 type: docker
 name: default
 
-# remove this section if your CPU is amd64
 platform:
   os: linux
   arch: amd64
@@ -17,6 +16,88 @@ steps:
       event:
         - tag
 
+  - name: release-image
+    image: gcr.io/kaniko-project/executor:debug
+    pull: if-not-present
+    commands:
+      - mkdir -p /kaniko/.docker
+      - echo "{\"auths\":{\"${IMAGE_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${IMAGE_REGISTRY_USER}" "${IMAGE_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+      - >
+        /kaniko/executor 
+        --context .
+        --dockerfile docker/Dockerfile
+        --destination $DESTINATION_IMAGE:$DRONE_TAG
+        --customPlatform=linux/amd64
+        --customPlatform=linux/arm64
+        --cache=true
+        --use-new-run
+    environment:
+      DESTINATION_IMAGE:
+        from_secret: destination_image
+      IMAGE_REGISTRY:
+        from_secret: image_registry
+      IMAGE_REGISTRY_USER:
+        from_secret: image_registry_username
+      IMAGE_REGISTRY_PASSWORD:
+        from_secret: image_registry_password
+    when:
+      event:
+        - tag
+  
+  - name: create release
+    image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
+    pull: if-not-exists
+    settings:
+      github_token:
+        from_secret: github_token
+      extra_options: |
+        release-type: simple
+        bump-patch-for-minor-pre-major: true
+    when:
+      event:
+        - push
+trigger:
+  branch:
+    - main
+
+---
+kind: pipeline
+type: docker
+name: local-mac
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: hello
+    image: busybox
+    commands:
+      - echo "Hello world ${DRONE_TAG}"
+    when:
+      event:
+        - tag
+
+  - name: release-image
+    image: gcr.io/kaniko-project/executor:debug
+    pull: if-not-present
+    commands:
+      - >
+        /kaniko/executor 
+        --context /drone/src/api 
+        --dockerfile /drone/src/api/dockerfile
+        --destination $DESTINATION_IMAGE 
+        --customPlatform=linux/amd64
+        --customPlatform=linux/arm64
+        --cache=true
+        --use-new-run
+    environment:
+      DESTINATION_IMAGE:
+        from_secret: destination_image
+    when:
+      event:
+        - tag
+  
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
     pull: if-not-exists
