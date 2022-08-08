@@ -14,7 +14,8 @@ steps:
     commands:
       - echo hello world
     when:
-      event: [tag]
+      event:
+        - tag
 
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.1
