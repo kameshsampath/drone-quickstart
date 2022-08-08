@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.6...v0.0.7) (2022-08-08)
+
+
+### Bug Fixes
+
+* create docker config on root ([8dea6cb](https://github.com/kameshsampath/drone-quickstart/commit/8dea6cbd7c47e2bdf503619766a1f927af2e9e17))
+
 ## [0.0.6](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.5...v0.0.6) (2022-08-08)
 
 
