@@ -6,7 +6,7 @@ name: default
 # remove this section if your CPU is amd64
 platform:
   os: linux
-  arch: arm64
+  arch: amd64
 
 steps:
   - name: hello
