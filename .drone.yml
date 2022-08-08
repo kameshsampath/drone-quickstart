@@ -19,7 +19,7 @@ steps:
 
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
-    pull: never
+    pull: if-not-exists
     settings:
       github_token:
         from_secret: github_token
