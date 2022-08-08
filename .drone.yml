@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+# remove this section if your CPU is amd64
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: hello
+  image: busybox
+  commands:
+  - echo hello world
+
+- name : release please
+    image: docker.io/kameshsampath/drone-release-please
+    pull: never
+    settings:
+      token:
+        from_secret: github_token
+      dry_run: true
+      extra_options: >-
+        --fork=true
+        --release-type=simple
+        --bump-patch-for-minor-pre-major=true
+    # TODO when merge to main and prs 
+
+trigger:
+  branch:
+  - main
