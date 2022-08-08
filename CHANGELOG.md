@@ -5,6 +5,22 @@
 
 ### Bug Fixes
 
+* can I create a release ([889a9e2](https://github.com/kameshsampath/drone-quickstart/commit/889a9e2386dd51a190360da082d650df24f9268f))
+* remove envrc ([8e58542](https://github.com/kameshsampath/drone-quickstart/commit/8e585427eb183f66ee0e5ef45b29850c096d1501))
+* testing release-please plugin ([f462b56](https://github.com/kameshsampath/drone-quickstart/commit/f462b560c1b35367804afbda38916745e6cd1ad3))
+* trying pipeline again ([6272991](https://github.com/kameshsampath/drone-quickstart/commit/6272991ba431c47959aaa30350eb132ead4216e9))
+
+
+### Miscellaneous Chores
+
+* release 0.0.1 ([cd4790f](https://github.com/kameshsampath/drone-quickstart/commit/cd4790f735f1b5a7e00899270a410fc43e0876bb))
+* release 0.0.1 ([f8f4445](https://github.com/kameshsampath/drone-quickstart/commit/f8f4445b0d20193b23d37115c1a3864dc0528ada))
+
+## 0.0.1 (2022-08-08)
+
+
+### Bug Fixes
+
 * remove envrc ([8e58542](https://github.com/kameshsampath/drone-quickstart/commit/8e585427eb183f66ee0e5ef45b29850c096d1501))
 * testing release-please plugin ([f462b56](https://github.com/kameshsampath/drone-quickstart/commit/f462b560c1b35367804afbda38916745e6cd1ad3))
 
