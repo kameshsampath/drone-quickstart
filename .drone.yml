@@ -12,14 +12,14 @@ steps:
   - name: hello
     image: busybox
     commands:
-      - echo hello world
+      - echo "Hello world ${DRONE_TAG}"
     when:
       event:
         - tag
 
   - name: create release
-    image: docker.io/kameshsampath/drone-github-release-please:v0.0.1
-    pull: if-not-present
+    image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
+    pull: never
     settings:
       github_token:
         from_secret: github_token
@@ -29,7 +29,6 @@ steps:
     when:
       event:
         - push
-
 trigger:
   branch:
     - main
