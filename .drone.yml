@@ -17,21 +17,14 @@ steps:
         - tag
 
   - name: release-image
-    image: gcr.io/kaniko-project/executor:debug
+    image: docker.io/docker:20.10.17-alpine3.16
     pull: if-not-present
     commands:
-      - mkdir -p /root/.docker
-      - echo "{\"auths\":{\"$IMAGE_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "$IMAGE_REGISTRY_USER" "$IMAGE_REGISTRY_PASSWORD" | base64 | tr -d '\n')\"}}}" > /root/.docker/config.json
-      - >
-        /kaniko/executor 
-        --context .
-        --dockerfile docker/Dockerfile
-        --destination "$DESTINATION_IMAGE:$DRONE_TAG"
-        --customPlatform=linux/amd64
-        --customPlatform=linux/arm64
-        --cache=true
-        --use-new-run
+      - 'docker login -u "$IMAGE_REGISTRY_USER" -p "$IMAGE_REGISTRY_PASSWORD"'
+      - "docker buildx inspect $BUILDER || docker buildx create --name=$BUILDER --driver=docker-container --driver-opt=network=host"
+      - "docker pull $DESTINATION_IMAGE:$DRONE_TAG && echo 'Failure: Tag already exists' || docker buildx build --push --builder=$BUILDER --platform=linux/amd64,linux/arm64 --build-arg TAG=$DRONE_TAG --tag=$DESTINATION_IMAGE:$DRONE_TAG ."
     environment:
+      BUILDER: buildx-multi-arch
       DESTINATION_IMAGE:
         from_secret: destination_image
       IMAGE_REGISTRY:
@@ -43,7 +36,7 @@ steps:
     when:
       event:
         - tag
-  
+
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
     pull: if-not-exists
