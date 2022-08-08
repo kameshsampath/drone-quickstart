@@ -13,16 +13,20 @@ steps:
     image: busybox
     commands:
       - echo hello world
+    when:
+      event: [tag]
 
-  - name: release please
-    image: docker.io/kameshsampath/drone-release-please
-    pull: never
+  - name: release
+    image: docker.io/kameshsampath/drone-github-release-please:v0.0.1
+    pull: if-not-present
     settings:
-      token:
+      github_token:
         from_secret: github_token
-      extra_options: >-
-        --release-type=simple
-        --bump-patch-for-minor-pre-major=true
+      extra_options: |
+        release-type: simple
+        bump-patch-for-minor-pre-major: true
+    when:
+      event: [push]
 
 trigger:
   branch:
