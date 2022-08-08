@@ -9,12 +9,12 @@ platform:
   arch: arm64
 
 steps:
-- name: hello
-  image: busybox
-  commands:
-  - echo hello world
+  - name: hello
+    image: busybox
+    commands:
+      - echo hello world
 
-- name : release please
+  - name: release please
     image: docker.io/kameshsampath/drone-release-please
     pull: never
     settings:
@@ -22,10 +22,9 @@ steps:
         from_secret: github_token
       dry_run: true
       extra_options: >-
-        --fork=true
         --release-type=simple
         --bump-patch-for-minor-pre-major=true
 
 trigger:
   branch:
-  - main
+    - main
