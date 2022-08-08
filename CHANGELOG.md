@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.3](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.2...v0.0.3) (2022-08-08)
+
+
+### Bug Fixes
+
+* change architecture ([8fbc438](https://github.com/kameshsampath/drone-quickstart/commit/8fbc438d5b0f0293cb57c49a56f7f9951d60f81b))
+* update pull strategy ([9313d4b](https://github.com/kameshsampath/drone-quickstart/commit/9313d4b2f39eb6ee671bc1a20552d50996c11625))
+* version the hello ([5909cf2](https://github.com/kameshsampath/drone-quickstart/commit/5909cf29f973e51f90adb11dec64157fffb8f805))
+
+
+### Miscellaneous Chores
+
+* release 0.0.3 ([cdc1296](https://github.com/kameshsampath/drone-quickstart/commit/cdc129699d6dde16dd7baae64e6a2cd0485a7f12))
+
 ## [0.0.2](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.1...v0.0.2) (2022-08-08)
 
 
