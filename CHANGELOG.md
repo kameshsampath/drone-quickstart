@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.5](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.4...v0.0.5) (2022-08-08)
+
+
+### Bug Fixes
+
+* escape the env variable names in the pipeline ([cc8f6a7](https://github.com/kameshsampath/drone-quickstart/commit/cc8f6a7b9e2fdead1732e1f298dbd6a35c36da73))
+
+
+### Miscellaneous Chores
+
+* release 0.0.5 ([b20998f](https://github.com/kameshsampath/drone-quickstart/commit/b20998f4a7143acd23cf052d07c3f687b28592bc))
+
 ## [0.0.4](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.3...v0.0.4) (2022-08-08)
 
 
