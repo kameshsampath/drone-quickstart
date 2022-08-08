@@ -20,7 +20,6 @@ steps:
     settings:
       token:
         from_secret: github_token
-      dry_run: true
       extra_options: >-
         --release-type=simple
         --bump-patch-for-minor-pre-major=true
