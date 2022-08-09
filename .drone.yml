@@ -48,6 +48,7 @@ releaseUsingKaniko: &releaseUsingKaniko
         --context .
         --dockerfile docker/Dockerfile
         --destination "$IMAGE_REGISTRY/$DESTINATION_IMAGE:$DRONE_TAG"
+        --customPlatform=linux/arm64
         --customPlatform=linux/amd64
         --use-new-run
     environment: *commonEnv
@@ -81,6 +82,15 @@ steps:
     when:
       event:
         - push
+  
+  - name: release-binaries
+    image: goreleaser/goreleaser
+    environment:
+      GITHUB_TOKEN:
+        from_secret: github_token
+    commands:
+      - goreleaser release
+    when: *tagEvent
 
   - *releaseUsingKaniko
 
