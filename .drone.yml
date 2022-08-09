@@ -49,7 +49,6 @@ releaseUsingKaniko: &releaseUsingKaniko
         --dockerfile docker/Dockerfile
         --destination "$IMAGE_REGISTRY/$DESTINATION_IMAGE:$DRONE_TAG"
         --customPlatform=linux/amd64
-        --customPlatform=linux/arm64
         --use-new-run
     environment: *commonEnv
     when: *tagEvent
