@@ -4,6 +4,6 @@ drone secret add --name image_registry_username --data "${DOCKERHUB_USERNAME}" k
 
 drone secret add --name image_registry_password --data "${DOCKERHUB_PASSWORD}" kameshsampath/drone-quickstart
 
-drone secret add --name destination_image --data "docker.io/${DOCKERHUB_USERNAME}/drone-quickstart" kameshsampath/drone-quickstart
+drone secret add --name destination_image --data "${DOCKERHUB_USERNAME}/drone-quickstart" kameshsampath/drone-quickstart
 
 drone secret add --name image_registry --data "docker.io" kameshsampath/drone-quickstart
