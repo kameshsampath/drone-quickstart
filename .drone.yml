@@ -1,4 +1,28 @@
 ---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+
+  - name: create release
+    image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
+    pull: if-not-exists
+    settings:
+      github_token:
+        from_secret: github_token
+      extra_options: |
+        release-type: simple
+        bump-patch-for-minor-pre-major: true
+    when:
+      event:
+        - push
+
+trigger:
+  branch:
+    - main
+
+---
 ###########################        START ANCHOR  ###############################
 commonEnv: &commonEnv
     DESTINATION_IMAGE:
@@ -53,31 +77,13 @@ releaseUsingKaniko: &releaseUsingKaniko
      event: [tag]
 ###########################        END ANCHOR  ###############################
 
+---
 kind: pipeline
 type: docker
-name: default
+name: release-artifacts
 
 steps:
-  - name: hello
-    image: busybox
-    commands:
-      - echo "Hello world ${DRONE_TAG}"
-    when:
-     event: [tag]
 
-  - name: create release
-    image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
-    pull: if-not-exists
-    settings:
-      github_token:
-        from_secret: github_token
-      extra_options: |
-        release-type: simple
-        bump-patch-for-minor-pre-major: true
-    when:
-      event:
-        - push
-  
   - name: release-binaries
     image: goreleaser/goreleaser
     environment:
@@ -85,11 +91,10 @@ steps:
         from_secret: github_token
     commands:
       - goreleaser release
-    when:
-     event: [tag]
 
   - *releaseUsingKaniko
 
-trigger:
-  branch:
-    - main
+triggers:
+  event:
+    - tag
+ 

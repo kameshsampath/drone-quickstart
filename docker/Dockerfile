@@ -6,14 +6,15 @@ LABEL org.opencontainers.image.authors="Kamesh Sampath<kamesh.sampath@hotmail.co
 
 ARG TARGETARCH
 
-RUN apk -Uuv add curl bash jq
+RUN apk -Uuv add curl bash jq \
+  && mkdir -p /build
 
-ADD ./dist /build
+ADD dist dist
 
 RUN <<EOT
-    jq -r --arg target_arch $TARGETARCH  '.[] | select(.goarch==$target_arch) | .path' /build/dist/artifacts.json > /build/pluginfile.txt
-    cp $(cat /build/pluginfile.txt) /bin/plugin
-    chmod +x /bin/plugin
+  jq -r --arg target_arch arm64 '.[] | select((.goarch==$target_arch) and .type=="Archive") | .path' /dist/artifacts.json > /build/plugin-file.txt 
+  tar -zxf "/$(cat /build/plugin-file.txt )"
+  mv plugin /bin/plugin
 EOT
 
 RUN rm -rf /build
