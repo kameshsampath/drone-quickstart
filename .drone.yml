@@ -21,7 +21,6 @@ steps:
 trigger:
   branch:
     - main
-
 ---
 ###########################        START ANCHOR  ###############################
 commonEnv: &commonEnv
@@ -77,7 +76,6 @@ releaseUsingKaniko: &releaseUsingKaniko
      event: [tag]
 ###########################        END ANCHOR  ###############################
 
----
 kind: pipeline
 type: docker
 name: release-artifacts
