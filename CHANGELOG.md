@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.11](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.10...v0.11.11) (2022-08-09)
+
+
+### Bug Fixes
+
+* Dockerfile for downloading right binary ([9ad78af](https://github.com/kameshsampath/drone-quickstart/commit/9ad78af26676666f1b62236f8245c6da49d3df0b))
+
 ## [0.11.10](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.9...v0.11.10) (2022-08-09)
 
 
