@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/kameshsampath/drone-quickstart/compare/v0.10.0...v0.11.0) (2022-08-09)
+
+
+### Miscellaneous Chores
+
+* release 0.11.0 ([86f177a](https://github.com/kameshsampath/drone-quickstart/commit/86f177a8d0528294fdceb4128404e9e07004ce0f))
+
 ## [0.10.0](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.9...v0.10.0) (2022-08-09)
 
 
