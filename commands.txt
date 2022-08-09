@@ -7,3 +7,6 @@ drone secret add --name image_registry_password --data "${DOCKERHUB_PASSWORD}" k
 drone secret add --name destination_image --data "${DOCKERHUB_USERNAME}/drone-quickstart" kameshsampath/drone-quickstart
 
 drone secret add --name image_registry --data "docker.io" kameshsampath/drone-quickstart
+
+
+drone secret update --name image_registry_password --data "${HARNESSIO_CI_DOCKERHUB_PASSWORD}" kameshsampath/drone-quickstart
