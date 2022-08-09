@@ -6,17 +6,10 @@ LABEL org.opencontainers.image.authors="Kamesh Sampath<kamesh.sampath@hotmail.co
 
 ARG TARGETARCH
 
-RUN apk -Uuv add curl bash jq \
-  && mkdir -p /build
+RUN apk -Uuv add wget curl bash
 
-ADD dist dist
-
-RUN <<EOT
-  jq -r --arg target_arch arm64 '.[] | select((.goarch==$target_arch) and .type=="Archive") | .path' /dist/artifacts.json > /build/plugin-file.txt 
-  tar -zxf "/$(cat /build/plugin-file.txt )"
-  mv plugin /bin/plugin
-EOT
-
-RUN rm -rf /build
+RUN curl -ssLO "https://github.com/kameshsampath/drone-quickstart/releases/download/${DRONE_TAG}/drone-quickstart_${DRONE_TAG:1}_linux_${TARGETARCH}.tar.gz" \
+ && tar -zxf drone-quickstart_${DRONE_TAG:1}_linux_${TARGETARCH}.tar.gz plugin \
+ && mv plugin /bin/plugin
 
 CMD ["/bin/plugin"]
