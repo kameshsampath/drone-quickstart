@@ -5,12 +5,13 @@ LABEL org.opencontainers.image.source https://github.com/kameshsampath/drone-qui
 LABEL org.opencontainers.image.authors="Kamesh Sampath<kamesh.sampath@hotmail.com>"
 
 ARG TARGETARCH
-ARG DRONE_TAG
+ARG GIT_TAG
 
 RUN apk -Uuv add wget curl bash
 
-RUN curl -ssLO "https://github.com/kameshsampath/drone-quickstart/releases/download/${DRONE_TAG}/drone-quickstart_${DRONE_TAG:1}_linux_${TARGETARCH}.tar.gz" \
- && tar -zxf drone-quickstart_${DRONE_TAG:1}_linux_${TARGETARCH}.tar.gz plugin \
- && mv plugin /bin/plugin
+RUN wget -O drone-quickstart.tar.gz "https://github.com/kameshsampath/drone-quickstart/releases/download/v${GIT_TAG}/drone-quickstart_${GIT_TAG}_linux_${TARGETARCH}.tar.gz" \
+ && tar -zxf drone-quickstart.tar.gz \
+ && mv plugin /bin/plugin \
+ && rm -rf drone-quickstart.tar.gz
 
 CMD ["/bin/plugin"]

@@ -39,6 +39,8 @@ kaniko: &kaniko
       - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(printf "%s:%s" "$IMAGE_REGISTRY_USER" "$IMAGE_REGISTRY_PASSWORD" | base64 | tr -d '\n')\"}}}" > "/kaniko/.docker/config.json"
       - >
         /kaniko/executor 
+        --build-arg "GIT_TAG=${DRONE_TAG:1}"
+        --build-arg "TARGETARCH=${DRONE_STAGE_ARCH}"
         --context .
         --dockerfile docker/Dockerfile
         --destination "$IMAGE_REGISTRY/$DESTINATION_IMAGE:$DRONE_TAG"
@@ -47,6 +49,8 @@ kaniko: &kaniko
         --cache=true
         --cache-repo="$IMAGE_REGISTRY/$DESTINATION_IMAGE"
         --use-new-run
+        --no-push
+
     environment: *commonEnv
 ###########################        END ANCHOR  ###############################
 kind: pipeline
@@ -58,8 +62,8 @@ platform:
   arch: arm64
 
 steps:
-  # - *kaniko
-  - *buildKit
+  - *kaniko
+  # - *buildKit
 
 trigger:
   branch:
