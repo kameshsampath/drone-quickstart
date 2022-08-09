@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.6](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.5...v0.11.6) (2022-08-09)
+
+
+### Bug Fixes
+
+* move anchors into release stage ([67d8fd7](https://github.com/kameshsampath/drone-quickstart/commit/67d8fd77254dff61fd8f15a9d6b63b905c30281c))
+* split stages ([44727a3](https://github.com/kameshsampath/drone-quickstart/commit/44727a3418e97509e2916bc348edf12c60c76ec9))
+
 ## [0.11.5](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.4...v0.11.5) (2022-08-09)
 
 
