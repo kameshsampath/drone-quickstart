@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.14](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.13...v0.11.14) (2022-08-09)
+
+
+### Bug Fixes
+
+* try use docker plugin ([c834bc5](https://github.com/kameshsampath/drone-quickstart/commit/c834bc5e75dd2893a8ee094e30fd69f451fafb2b))
+
 ## [0.11.13](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.12...v0.11.13) (2022-08-09)
 
 
