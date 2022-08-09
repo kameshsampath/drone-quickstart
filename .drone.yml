@@ -1,5 +1,9 @@
 ---
 ###########################        START ANCHOR  ###############################
+when: &tagEvent
+  event:
+  - tag
+
 commonEnv: &commonEnv
     DESTINATION_IMAGE:
         from_secret: destination_image
@@ -10,7 +14,7 @@ commonEnv: &commonEnv
     IMAGE_REGISTRY_PASSWORD:
       from_secret: image_registry_password
 
-buildKit: &buildKit
+relaseUsingBuildKit: &relaseUsingBuildKit
     name: release-image
     image: moby/buildkit:rootless
     pull: if-not-present
@@ -29,8 +33,10 @@ buildKit: &buildKit
     environment:
       BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
       << : *commonEnv
+    when: *tagEvent
+      
 
-kaniko: &kaniko
+releaseUsingKaniko: &releaseUsingKaniko
     name: release-image
     image: gcr.io/kaniko-project/executor:debug
     pull: if-not-present
@@ -48,6 +54,7 @@ kaniko: &kaniko
         --cache-repo="$IMAGE_REGISTRY/$DESTINATION_IMAGE"
         --use-new-run
     environment: *commonEnv
+    when: *tagEvent
 ###########################        END ANCHOR  ###############################
 
 kind: pipeline
@@ -63,14 +70,7 @@ steps:
     image: busybox
     commands:
       - echo "Hello world ${DRONE_TAG}"
-    when:
-      event:
-        - tag
-
-  - *kaniko
-     when:
-      event:
-        - tag
+    when: *tagEvent
 
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
@@ -84,6 +84,9 @@ steps:
     when:
       event:
         - push
+
+  - *releaseUsingKaniko
+
 trigger:
   branch:
     - main
