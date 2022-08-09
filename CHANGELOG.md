@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.8](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.7...v0.11.8) (2022-08-09)
+
+
+### Bug Fixes
+
+* add fetch step to make goreleaser happy ([3028868](https://github.com/kameshsampath/drone-quickstart/commit/3028868ed55449870101a95ad84b91ff3b341892))
+
 ## [0.11.7](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.6...v0.11.7) (2022-08-09)
 
 
