@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.13](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.12...v0.11.13) (2022-08-09)
+
+
+### Bug Fixes
+
+* add dependencies ([e47bba2](https://github.com/kameshsampath/drone-quickstart/commit/e47bba25b5071a1095c1baa4e4e779b43496f36e))
+
 ## [0.11.12](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.11...v0.11.12) (2022-08-09)
 
 
