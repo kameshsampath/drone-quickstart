@@ -59,10 +59,6 @@ kind: pipeline
 type: docker
 name: default
 
-platform:
-  os: linux
-  arch: amd64
-
 steps:
   - name: hello
     image: busybox
