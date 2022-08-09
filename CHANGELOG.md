@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.9](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.8...v0.0.9) (2022-08-09)
+
+
+### Bug Fixes
+
+* anchors ([4f36767](https://github.com/kameshsampath/drone-quickstart/commit/4f36767d2c84df8336d8b75796a15fdf0ec3bb80))
+* docker auth config ([06eb4e3](https://github.com/kameshsampath/drone-quickstart/commit/06eb4e327e956d1a92dbc12f0d201e2df97c37b1))
+
 ## [0.0.8](https://github.com/kameshsampath/drone-quickstart/compare/v0.0.7...v0.0.8) (2022-08-08)
 
 
