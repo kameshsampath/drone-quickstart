@@ -5,6 +5,7 @@ LABEL org.opencontainers.image.source https://github.com/kameshsampath/drone-qui
 LABEL org.opencontainers.image.authors="Kamesh Sampath<kamesh.sampath@hotmail.com>"
 
 ARG TARGETARCH
+ARG DRONE_TAG
 
 RUN apk -Uuv add wget curl bash
 
