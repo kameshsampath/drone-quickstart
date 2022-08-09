@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.1](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.0...v0.11.1) (2022-08-09)
+
+
+### Bug Fixes
+
+* remove kaniko cache ([bffe9ba](https://github.com/kameshsampath/drone-quickstart/commit/bffe9ba3bfe5123fa70db8a45fd2c9779f8d08b8))
+
 ## [0.11.0](https://github.com/kameshsampath/drone-quickstart/compare/v0.10.0...v0.11.0) (2022-08-09)
 
 
