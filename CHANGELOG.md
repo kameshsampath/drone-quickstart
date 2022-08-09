@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.4](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.3...v0.11.4) (2022-08-09)
+
+
+### Bug Fixes
+
+* add tag listing in releaser step ([42a9914](https://github.com/kameshsampath/drone-quickstart/commit/42a9914a5673f736d9ecbcdc545bee1863d5a6d6))
+
 ## [0.11.3](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.2...v0.11.3) (2022-08-09)
 
 
