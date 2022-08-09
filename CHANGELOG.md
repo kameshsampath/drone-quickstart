@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.3](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.2...v0.11.3) (2022-08-09)
+
+
+### Bug Fixes
+
+* remove platform to allow defaults ([21bf94b](https://github.com/kameshsampath/drone-quickstart/commit/21bf94b27fcf237a85fd120cc5e63ea1d4d0dd07))
+
 ## [0.11.2](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.1...v0.11.2) (2022-08-09)
 
 
