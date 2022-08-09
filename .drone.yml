@@ -4,7 +4,6 @@ type: docker
 name: default
 
 steps:
-
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
     pull: if-not-exists
@@ -22,40 +21,21 @@ trigger:
   branch:
     - main
 ---
-###########################        START ANCHOR  ###############################
-commonEnv: &commonEnv
-    DESTINATION_IMAGE:
-        from_secret: destination_image
-    IMAGE_REGISTRY:
-      from_secret: image_registry
-    IMAGE_REGISTRY_USER:
-      from_secret: image_registry_username
-    IMAGE_REGISTRY_PASSWORD:
-      from_secret: image_registry_password
+kind: pipeline
+type: docker
+name: release-artifacts
 
-relaseUsingBuildKit: &relaseUsingBuildKit
-    name: release-image
-    image: moby/buildkit:rootless
-    pull: if-not-present
-    privileged: true
-    commands:
-      - mkdir -p "$HOME/.docker"
-      - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(printf "%s:%s" "$IMAGE_REGISTRY_USER" "$IMAGE_REGISTRY_PASSWORD" | base64 | tr -d '\n')\"}}}" > "$HOME/.docker/config.json"
-      - >- 
-         buildctl-daemonless.sh build --frontend dockerfile.v0 
-         --local context=/drone/src
-         --local dockerfile=/drone/src/docker 
-         --opt platform=linux/amd64,linux/arm64
-         --export-cache type=registry,ref=$IMAGE_REGISTRY/$DESTINATION_IMAGE:buildcache
-         --import-cache type=registry,ref=$IMAGE_REGISTRY/$DESTINATION_IMAGE:buildcache
-         --output type=image,name=$DESTINATION_IMAGE:$DRONE_TAG,push=true
+steps:
+  - name: release-binaries
+    image: goreleaser/goreleaser
     environment:
-      BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
-      << : *commonEnv
-      
+      GITHUB_TOKEN:
+        from_secret: github_token
+    commands:
+      ## skipping git validate ??
+      - goreleaser release --skip-validate
 
-releaseUsingKaniko: &releaseUsingKaniko
-    name: release-image
+  - name: release-image
     image: gcr.io/kaniko-project/executor:debug
     pull: if-not-present
     commands:
@@ -69,26 +49,16 @@ releaseUsingKaniko: &releaseUsingKaniko
         --customPlatform=linux/arm64
         --customPlatform=linux/amd64
         --use-new-run
-    environment: *commonEnv
-###########################        END ANCHOR  ###############################
-
-kind: pipeline
-type: docker
-name: release-artifacts
-
-steps:
-
-  - name: release-binaries
-    image: goreleaser/goreleaser
     environment:
-      GITHUB_TOKEN:
-        from_secret: github_token
-    commands:
-      - goreleaser release
-
-  - *releaseUsingKaniko
+      DESTINATION_IMAGE:
+        from_secret: destination_image
+      IMAGE_REGISTRY:
+        from_secret: image_registry
+      IMAGE_REGISTRY_USER:
+        from_secret: image_registry_username
+      IMAGE_REGISTRY_PASSWORD:
+        from_secret: image_registry_password
 
 trigger:
   event:
     - tag
- 
