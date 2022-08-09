@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.7](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.6...v0.11.7) (2022-08-09)
+
+
+### Bug Fixes
+
+* try skip validate for go releaser ([fe8e6c2](https://github.com/kameshsampath/drone-quickstart/commit/fe8e6c283b7621870983805cae98e625ca1d1af9))
+
 ## [0.11.6](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.5...v0.11.6) (2022-08-09)
 
 
