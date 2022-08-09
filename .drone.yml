@@ -26,14 +26,19 @@ type: docker
 name: release-artifacts
 
 steps:
+  # need to fetch the tags to be available in next steps
+  - name: fetch
+    image: alpine/git
+    commands:
+    - git fetch --tags
+  
   - name: release-binaries
     image: goreleaser/goreleaser
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
     commands:
-      ## skipping git validate ??
-      - goreleaser release --skip-validate
+      - goreleaser release
 
   - name: release-image
     image: gcr.io/kaniko-project/executor:debug
