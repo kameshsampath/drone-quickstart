@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.15](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.14...v0.11.15) (2022-08-09)
+
+
+### Bug Fixes
+
+* add build arg to arm64 ([1112983](https://github.com/kameshsampath/drone-quickstart/commit/1112983aa9bde15ce8e286d646eae79f1a74df6d))
+
 ## [0.11.14](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.13...v0.11.14) (2022-08-09)
 
 
