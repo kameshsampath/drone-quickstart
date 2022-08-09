@@ -30,6 +30,16 @@ buildKit: &buildKit
       BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
       << : *commonEnv
 
+buildah: &buildah
+    name: release-image
+    image: quay.io/buildah/stable
+    pull: if-not-present
+    commands:
+      - buildah images
+    environment:
+      BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
+      << : *commonEnv
+
 kaniko: &kaniko
     name: release-image
     image: gcr.io/kaniko-project/executor:debug
@@ -62,7 +72,8 @@ platform:
   arch: arm64
 
 steps:
-  - *kaniko
+  # - *kaniko
+  - *buildah
   # - *buildKit
 
 trigger:
