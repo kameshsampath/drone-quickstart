@@ -69,6 +69,7 @@ steps:
         --use-new-run
         --verbosity=debug
     environment:
+      DRONE_STAGE_DEPENDS_ON: release-binaries
       DESTINATION_IMAGE:
         from_secret: destination_image
       IMAGE_REGISTRY:
@@ -109,6 +110,7 @@ steps:
         --use-new-run
         --verbosity=debug
     environment:
+      DRONE_STAGE_DEPENDS_ON: release-binaries
       DESTINATION_IMAGE:
         from_secret: destination_image
       IMAGE_REGISTRY:
