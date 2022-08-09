@@ -85,6 +85,7 @@ steps:
       GITHUB_TOKEN:
         from_secret: github_token
     commands:
+      - git tag -l
       - goreleaser release
     when: *tagEvent
 
