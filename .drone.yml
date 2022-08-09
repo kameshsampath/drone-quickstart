@@ -1,10 +1,14 @@
 ---
 kind: pipeline
 type: docker
-name: default
+name: "Create Release"
+
+trigger:
+  branch:
+    - main
 
 steps:
-  - name: create release
+  - name: release-please
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
     pull: if-not-exists
     settings:
@@ -16,14 +20,14 @@ steps:
     when:
       event:
         - push
-
-trigger:
-  branch:
-    - main
 ---
 kind: pipeline
 type: docker
-name: release-binaries
+name: "Release Binaries"
+
+trigger:
+  event:
+    - tag
 
 steps:
   # need to fetch the tags to be available in next steps
@@ -32,20 +36,24 @@ steps:
     commands:
     - git fetch --tags
   
-  - name: release-binaries
+  - name: goreleaser
     image: goreleaser/goreleaser
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
     commands:
       - goreleaser release
-trigger:
-  event:
-    - tag
 ---
 kind: pipeline
 type: docker
-name: release-image-linux-amd64
+name: "Release Docker Image(amd64)"
+
+depends_on:
+ - "Release Binaries"
+
+trigger:
+  event:
+    - tag
 
 platform:
   os: linux
@@ -69,7 +77,6 @@ steps:
         --use-new-run
         --verbosity=debug
     environment:
-      DRONE_STAGE_DEPENDS_ON: release-binaries
       DESTINATION_IMAGE:
         from_secret: destination_image
       IMAGE_REGISTRY:
@@ -78,15 +85,17 @@ steps:
         from_secret: image_registry_username
       IMAGE_REGISTRY_PASSWORD:
         from_secret: image_registry_password
+---
+kind: pipeline
+type: docker
+name: "Release Docker Image(arm64)"
+
+depends_on:
+ - "Release Binaries"
 
 trigger:
   event:
     - tag
-
----
-kind: pipeline
-type: docker
-name: release-image-linux-arm64
 
 platform:
   os: linux
@@ -110,7 +119,6 @@ steps:
         --use-new-run
         --verbosity=debug
     environment:
-      DRONE_STAGE_DEPENDS_ON: release-binaries
       DESTINATION_IMAGE:
         from_secret: destination_image
       IMAGE_REGISTRY:
@@ -119,7 +127,3 @@ steps:
         from_secret: image_registry_username
       IMAGE_REGISTRY_PASSWORD:
         from_secret: image_registry_password
-
-trigger:
-  event:
-    - tag
