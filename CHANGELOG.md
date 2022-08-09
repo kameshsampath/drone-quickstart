@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.10](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.9...v0.11.10) (2022-08-09)
+
+
+### Bug Fixes
+
+* add version info to the command ([7f93bbf](https://github.com/kameshsampath/drone-quickstart/commit/7f93bbf4a045f1aacc501c8a3de08b6ae3f2bfa8))
+
 ## [0.11.9](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.8...v0.11.9) (2022-08-09)
 
 
