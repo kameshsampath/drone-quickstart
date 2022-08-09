@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.2](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.1...v0.11.2) (2022-08-09)
+
+
+### Bug Fixes
+
+* add binary example ([80c0c47](https://github.com/kameshsampath/drone-quickstart/commit/80c0c47116e3dcc7a173f8c8ec1fe1e4cbb3da7a))
+* try just amd64 build ([6bf817c](https://github.com/kameshsampath/drone-quickstart/commit/6bf817cedabcc8ae43323ad584514af4c2c53f7d))
+
 ## [0.11.1](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.0...v0.11.1) (2022-08-09)
 
 
