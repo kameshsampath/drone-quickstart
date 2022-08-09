@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.16](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.15...v0.11.16) (2022-08-09)
+
+
+### Bug Fixes
+
+* amr64 image url ([b36c86e](https://github.com/kameshsampath/drone-quickstart/commit/b36c86eea9e22a4deb51c1138178769d0f4c2388))
+
 ## [0.11.15](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.14...v0.11.15) (2022-08-09)
 
 
