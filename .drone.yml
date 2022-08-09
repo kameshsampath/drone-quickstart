@@ -52,8 +52,6 @@ relaseUsingBuildKit: &relaseUsingBuildKit
     environment:
       BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
       << : *commonEnv
-    when:
-     event: [tag]
       
 
 releaseUsingKaniko: &releaseUsingKaniko
@@ -72,8 +70,6 @@ releaseUsingKaniko: &releaseUsingKaniko
         --customPlatform=linux/amd64
         --use-new-run
     environment: *commonEnv
-    when:
-     event: [tag]
 ###########################        END ANCHOR  ###############################
 
 kind: pipeline
@@ -92,7 +88,7 @@ steps:
 
   - *releaseUsingKaniko
 
-triggers:
+trigger:
   event:
     - tag
  
