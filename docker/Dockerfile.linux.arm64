@@ -9,7 +9,7 @@ ARG DRONE_TAG
 
 RUN apk -Uuv add wget curl bash
 
-RUN wget -O drone-quickstart.tar.gz "https://github.com/kameshsampath/drone-quickstart/releases/download/${DRONE_TAG:1}/drone-quickstart_${DRONE_TAG}_linux_arm64.tar.gz" \
+RUN wget -O drone-quickstart.tar.gz "https://github.com/kameshsampath/drone-quickstart/releases/download/${DRONE_TAG}/drone-quickstart_${DRONE_TAG:1}_linux_arm64.tar.gz" \
  && tar -zxf drone-quickstart.tar.gz \
  && mv plugin /bin/plugin \
  && rm -rf drone-quickstart.tar.gz
