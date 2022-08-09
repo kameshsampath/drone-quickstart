@@ -1,9 +1,5 @@
 ---
 ###########################        START ANCHOR  ###############################
-when: &tagEvent
-  event:
-  - tag
-
 commonEnv: &commonEnv
     DESTINATION_IMAGE:
         from_secret: destination_image
@@ -33,7 +29,8 @@ relaseUsingBuildKit: &relaseUsingBuildKit
     environment:
       BUILDKITD_FLAGS: "--oci-worker-no-process-sandbox"
       << : *commonEnv
-    when: *tagEvent
+    when:
+     event: [tag]
       
 
 releaseUsingKaniko: &releaseUsingKaniko
@@ -52,7 +49,8 @@ releaseUsingKaniko: &releaseUsingKaniko
         --customPlatform=linux/amd64
         --use-new-run
     environment: *commonEnv
-    when: *tagEvent
+    when:
+     event: [tag]
 ###########################        END ANCHOR  ###############################
 
 kind: pipeline
@@ -64,7 +62,8 @@ steps:
     image: busybox
     commands:
       - echo "Hello world ${DRONE_TAG}"
-    when: *tagEvent
+    when:
+     event: [tag]
 
   - name: create release
     image: docker.io/kameshsampath/drone-github-release-please:v0.0.2
@@ -85,9 +84,9 @@ steps:
       GITHUB_TOKEN:
         from_secret: github_token
     commands:
-      - git tag -l
       - goreleaser release
-    when: *tagEvent
+    when:
+     event: [tag]
 
   - *releaseUsingKaniko
 
