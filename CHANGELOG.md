@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.5](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.4...v0.11.5) (2022-08-09)
+
+
+### Bug Fixes
+
+* define tag events w/o anchor ([a88626d](https://github.com/kameshsampath/drone-quickstart/commit/a88626db76949313040e1059ccad650d59a86595))
+
 ## [0.11.4](https://github.com/kameshsampath/drone-quickstart/compare/v0.11.3...v0.11.4) (2022-08-09)
 
 
